@@ -17,16 +17,17 @@ func main() {
 
 // count returns number of words in the string
 func count(src string) int {
-	return strings.Fields(src)
+	return len(strings.Fields(src))
 }
 
 // readInput reads source string from command line arguments and returns them
 func readInput() (src string, err error) {
-	src = os.Args[1]
-	err = nil
-	if len(os.Args) > 2 {
-		err = errors.New("too many cli arguments")
+	src, err = "", nil
+	if len(os.Args) != 2 {
+		err = errors.New("incorrect number of cli arguments")
+		return
 	}
+	src = os.Args[1]
 	return
 }
 
